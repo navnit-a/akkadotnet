@@ -19,7 +19,6 @@ namespace akka_dot_net
             Console.WriteLine("Actor System Created!!");
 
             Props playbackActorProps = Props.Create<PlaybackActor>();
-
             IActorRef playbackActorRef = _movieStreamingActorSystem.ActorOf(playbackActorProps, "PlaybackActor");
 
             // Send some messages
@@ -28,9 +27,10 @@ namespace akka_dot_net
 
             // Custom type message
             playbackActorRef.Tell(new PlayMovieMessage("My Poco Message", 123));
-
+            var playbackActorImprovedProps = Props.Create<PlaybackImprovedActor>();
+            var playbackActorImprovedRef = _movieStreamingActorSystem.ActorOf(playbackActorImprovedProps, "PlaybackImprovedActor");
             // Send improved message
-            playbackActorRef.Tell(new PlayMovieMessage("Improved Movie Title", 1234));
+            playbackActorImprovedRef.Tell(new PlayMovieMessage("Improved Movie Title", 1234));
 
             Console.ReadLine();
 
