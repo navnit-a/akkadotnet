@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using akka_dot_net.Actor;
+using akka_dot_net.Message;
 using Akka.Actor;
 
 namespace akka_dot_net
@@ -24,6 +25,9 @@ namespace akka_dot_net
             // Send some messages
             playbackActorRef.Tell("New World Order");
             playbackActorRef.Tell(123);
+
+            // Custom type message
+            playbackActorRef.Tell(new PlayMovieMessage("My Poco Message", 123));
 
             Console.ReadLine();
 

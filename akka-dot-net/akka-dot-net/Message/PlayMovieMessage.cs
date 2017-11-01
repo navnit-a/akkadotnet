@@ -1,0 +1,18 @@
+﻿namespace akka_dot_net.Message
+{
+    // THIS IS A POCO
+    // Setters should be private to make message immutable
+
+    public class PlayMovieMessage
+    {
+        public PlayMovieMessage(string movieTitle, int userId)
+        {
+            MovieTitle = movieTitle;
+            UserId = userId;
+        }
+
+        public string MovieTitle { get; private set; }
+
+        public int UserId { get; private set; }
+    }
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+using akka_dot_net.Message;
 using Akka.Actor;
 
 namespace akka_dot_net.Actor
@@ -19,6 +20,15 @@ namespace akka_dot_net.Actor
                     break;
                 case int _:
                     Console.WriteLine("My Int Message ::: " + message);
+                    break;
+                case PlayMovieMessage _:
+                {
+                    if (message is PlayMovieMessage outputMessage)
+                    {
+                        Console.WriteLine("Playback Actor Title ::: " + outputMessage.MovieTitle);
+                        Console.WriteLine("Playback Actor OD ::: " + outputMessage.UserId);
+                    }
+                }
                     break;
                 default:
                     Unhandled(message);
