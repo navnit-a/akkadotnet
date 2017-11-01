@@ -29,6 +29,9 @@ namespace akka_dot_net
             // Custom type message
             playbackActorRef.Tell(new PlayMovieMessage("My Poco Message", 123));
 
+            // Send improved message
+            playbackActorRef.Tell(new PlayMovieMessage("Improved Movie Title", 1234));
+
             Console.ReadLine();
 
             _movieStreamingActorSystem.Terminate();

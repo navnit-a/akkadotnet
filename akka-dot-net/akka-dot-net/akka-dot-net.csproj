@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actor\PlaybackActor.cs" />
+    <Compile Include="Actor\PlaybackImprovedActor.cs" />
     <Compile Include="Message\PlayMovieMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
