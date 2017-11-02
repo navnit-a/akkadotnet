@@ -53,8 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actor\DangerousActor.cs" />
     <Compile Include="Actor\PlaybackActor.cs" />
     <Compile Include="Actor\PlaybackImprovedActor.cs" />
+    <Compile Include="Actor\NetflixActor.cs" />
+    <Compile Include="Actor\UserActor.cs" />
+    <Compile Include="Message\NetflixMessage.cs" />
+    <Compile Include="Message\NowPlayingMessage.cs" />
     <Compile Include="Message\PlayMovieMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
