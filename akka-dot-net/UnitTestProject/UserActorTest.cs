@@ -15,36 +15,34 @@ namespace UnitTestProject
     public class UserActorTest : TestKit
     {
         [Fact]
-        public void ShouldHaveInitialState()
-        {
-            TestActorRef<UserActor> actor = ActorOfAsTestActorRef<UserActor>();
-
-            Assert.Null(actor.UnderlyingActor.CurrentlyPlaying);
-        }
-
-        [Fact]
         public void ShouldUpdateCurrentlyPlayingState()
         {
-            TestActorRef<UserActor> actor = ActorOfAsTestActorRef<UserActor>();
+            IActorRef actor = Sys.ActorOf<UserActor>();
+            //TestActorRef<UserActor> actor = ActorOfAsTestActorRef<UserActor>();
 
             actor.Tell(new PlayMovieMessage("The Matrix", 12));
             
-            Assert.Equal("The Matrix", actor.UnderlyingActor.CurrentlyPlaying);
+            //Assert.Equal("The Matrix", actor.UnderlyingActor.CurrentlyPlaying);
+            //Assert.Equal("The Matrix", actor.CurrentlyPlaying);
         }
 
         [Fact]
         public void ShouldPlayMovie()
         {
             // Act
-            IActorRef actor = ActorOf<UserActor>();
+            IActorRef actor = Sys.ActorOf<UserActor>(); 
+            // We not trying to access properties of UserActor, rather asserting it's return value
 
             // Arrange
             actor.Tell(new PlayMovieMessage("Hulk", 123));
 
-            // Assert
-            var messageReceived = ExpectMsgFrom<NowPlayingMessage>(actor, message => message.CurrentlyPlaying == "Hulk");
+            // Assert 1
+            //ExpectMsgFrom<NowPlayingMessage>(actor);
 
             // Assert 2
+            NowPlayingMessage messageReceived = ExpectMsgFrom<NowPlayingMessage>(actor, message => message.CurrentlyPlaying == "Hulk", TimeSpan.FromSeconds(5));
+
+            // Assert 3
             Assert.Equal("Hulk", messageReceived.CurrentlyPlaying);
         }
     }

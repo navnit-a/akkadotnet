@@ -26,19 +26,22 @@ namespace UnitTestProject
         [Fact]
         public void ShouldSetInitialPlayCount()
         {
+            // Act 
             var actor = new NetflixActor();
             var initialStats = new Dictionary<string, int> {{"Iron Man", 10}};
 
+            // Arrange
             actor.HandleTheMessage(new NetflixMessage(new ReadOnlyDictionary<string, int>(initialStats)));
 
             Assert.Equal(10, actor.PlayCounts["Iron Man"]);
         }
 
+        // Unit Test
         [Fact]
         public void ShouldReceiveStatisticMessage()
         {
             // Act
-            //IActorRef actorRef = ActorOf<NetflixActor>();
+            //IActorRef actorRef = Sys.ActorOf<NetflixActor>();
             TestActorRef<NetflixActor> actorRef = ActorOfAsTestActorRef<NetflixActor>();
 
             // Arrange
@@ -46,6 +49,7 @@ namespace UnitTestProject
             actorRef.Tell(new NetflixMessage(new ReadOnlyDictionary<string, int>(initialStats)));
 
             // Assert
+            //Assert.Equal(10, actorRef.PlayCounts["Iron Man"]);
             Assert.Equal(10, actorRef.UnderlyingActor.PlayCounts["Iron Man"]);
         }
     }
